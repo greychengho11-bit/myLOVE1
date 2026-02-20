@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>This Is All For You Cinta</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            background: linear-gradient(135deg, #ff9a9e, #fecfef, #ffecd2);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+        }
+        h1, h2 {
+            color: #e91e63;
+            margin-bottom: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #e91e63;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: 'Times New Roman', serif;
+        }
+        button {
+            background: #e91e63;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 18px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background 0.3s;
+            font-family: 'Times New Roman', serif;
+        }
+        button:hover {
+            background: #c2185b;
+        }
+        .hidden {
+            display: none;
+        }
+        .message {
+            font-size: 20px;
+            line-height: 1.6;
+            margin: 20px 0;
+        }
+        .hearts {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .heart {
+            position: absolute;
+            color: #e91e63;
+            font-size: 24px;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="login" class="page">
+            <h1>Login duyu sayangggg</h1>
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <button onclick="checkLogin()">Masuk</button>
+        </div>
+        <div id="question" class="page hidden">
+            <h2>Kamu sayang aku tidak?</h2>
+            <button onclick="answer('iya')">Iya</button>
+            <button onclick="answer('tidak')">Tidak</button>
+            <div id="thanks" class="hidden">
+                <p class="message">Terima kasih Sayang udah Menyayangiku</p>
+                <button onclick="nextPage()">Ke Halaman Selanjutnya</button>
+            </div>
+        </div>
+        <div id="message" class="page hidden">
+            <h2>THIS IS ALL FOR YOU</h2>
+            <p class="message">
+                HALOOO SAYANGG AKUU CINTAKUUU SEMESTAKUUU, AKU BUAT INI CUMA MAU BILANG TERIMA KASIH BANYAK BANYAKK BUAT KAMUU, UDAHH MAU MENCINTAIKU, MENYAYANGIKU, DAN SEMUA MUANYAAA, MAKASIH BANYAKK SENGGG, AKU JADI NGERASA MASIH BISA DICINTAI, AKU JADI NGERASA AKU LAYAK DISAYANGI, AKU JADI MERASA AKU BISA BAHAGIA, AKU HARAP KITA GA ASING YA SAYANGGG, MESKIPUN KEDEPANNYA MUNGKIN AKAN ADA PERBEDAAN KARENA SETIAP MANUSIA TIDAK ADA YANG TAU DIKEDEPAN HARI BAKALAN SEPERTI APA, AKH AKAN TETAP SAYANGGG KAMUUU, CINTAA KAMUU, GAMAU ASING SAMA KAMUUU, AKU BERSYUKURRR BANGET PUNYA KAMUUU, KALAU ADA APA APA BILANG YA SAYANGG JANGAN DIPENDAMM, KITA SELESAIKAN BERSAMAA OKAIII???, DAN KALAU AKU ADA SALAH KAMU LANGSUNG NGOMONGG SAYANGG, INTINYA AKU GA MAU KEHILANGAN KAMUU, I LOVE YOU MORE THAN INFINITY SAYANGGG JESEN ALDY GEOLL❤️❤️❤️🫶🏻
+            </p>
+            <!-- Elemen audio untuk lagu -->
+            <audio id="song" controls loop>
+                <!-- Ganti dengan URL MP3 yang valid, misalnya dari sumber legal -->
+                <source src="https://example.com/path/to/Kasih_Putih.mp3" type="audio/mpeg">
+                Browser Anda tidak mendukung elemen audio.
+            </audio>
+            <button onclick="playSong()">Putar Lagu</button>
+        </div>
+        <div class="hearts">
+            <div class="heart" style="left: 10%; animation-delay: 0s;">❤️</div>
+            <div class="heart" style="left: 20%; animation-delay: 1s;">💖</div>
+            <div class="heart" style="left: 30%; animation-delay: 2s;">🫶🏻</div>
+            <div class="heart" style="left: 40%; animation-delay: 0.5s;">❤️</div>
+            <div class="heart" style="left: 50%; animation-delay: 1.5s;">💖</div>
+            <div class="heart" style="left: 60%; animation-delay: 2.5s;">🫶🏻</div>
+            <div class="heart" style="left: 70%; animation-delay: 0.8s;">❤️</div>
+            <div class="heart" style="left: 80%; animation-delay: 1.8s;">💖</div>
+            <div class="heart" style="left: 90%; animation-delay: 2.8s;">🫶🏻</div>
+        </div>
+    </div>
+
+    <script>
+        function checkLogin() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            if (username === 'JESEN' && password === 'ALDY GEOL') {
+                document.getElementById('login').classList.add('hidden');
+                document.getElementById('question').classList.remove('hidden');
+            } else {
+                alert('Username atau Password salah!');
+            }
+        }
+
+        function answer(response) {
+            if (response === 'iya') {
+                document.getElementById('thanks').classList.remove('hidden');
+            } else {
+                alert('Masa ga sayang atthwuuu cciiiiii>_< 😘');
+            }
+        }
+
+        function nextPage() {
+            document.getElementById('question').classList.add('hidden');
+            document.getElementById('message').classList.remove('hidden');
+            // Coba putar lagu otomatis
+            playSong();
+        }
+
+        function playSong() {
+            const song = document.getElementById('song');
+            song.play().catch(e => console.log('Autoplay diblokir: ' + e));
+        }
+    </script>
+</body>
+</html>
